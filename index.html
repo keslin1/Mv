@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#003087" />
+  <meta name="description" content="MV Shipping – Sèvis livrezon depi Miami pou Ayiti. Rapid, fiab, 4.99$/lb." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MV Shipping" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+  <title>MV Shipping – Miami → Ayiti</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<!-- ONBOARDING OVERLAY -->
+<div id="onboarding-overlay" class="onboarding-overlay hidden">
+  <div class="onboarding-card">
+    <div class="onboarding-logo">
+      <div class="logo-mark">MV</div>
+      <span>Shipping</span>
+    </div>
+    <h2>Byenveni sou MV Shipping</h2>
+    <p>Anrejistre kont ou gratis pou swiv kolis ou yo ak resevwa mizajou dirèk.</p>
+    <form id="onboarding-form">
+      <div class="form-group">
+        <label for="ob-name">Non Konplè</label>
+        <input type="text" id="ob-name" placeholder="Ex: Jean Pierre" required />
+      </div>
+      <div class="form-group">
+        <label for="ob-email">Adrès Imèl</label>
+        <input type="email" id="ob-email" placeholder="ex@gmail.com" required />
+      </div>
+      <div class="form-group">
+        <label for="ob-phone">Nimewo Telefòn</label>
+        <input type="tel" id="ob-phone" placeholder="+1 (000) 000-0000" required />
+      </div>
+      <div class="form-group">
+        <label for="ob-dob">Dat Nesans</label>
+        <input type="date" id="ob-dob" required />
+      </div>
+      <button type="submit" class="btn-primary" id="ob-submit">
+        <span class="btn-text">Anrejistre</span>
+        <span class="btn-loader hidden">⏳</span>
+      </button>
+      <p id="ob-error" class="form-error hidden"></p>
+    </form>
+  </div>
+</div>
+
+<!-- PWA INSTALL PROMPT -->
+<div id="install-banner" class="install-banner hidden">
+  <div class="install-content">
+    <div class="install-icon">📦</div>
+    <div class="install-text">
+      <strong>Enstale Aplikasyon an</strong>
+      <span>Ajoute MV Shipping sou ekran ou</span>
+    </div>
+  </div>
+  <div class="install-actions">
+    <button id="install-btn" class="btn-install">Enstale</button>
+    <button id="install-dismiss" class="btn-dismiss">✕</button>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <div class="logo-mark-sm">MV</div>
+      <span>Shipping</span>
+    </a>
+    <div class="nav-links desktop-only">
+      <a href="#home" class="nav-link active" data-section="home">Akèy</a>
+      <a href="#notifications" class="nav-link" data-section="notifications">
+        Notifikasyon
+        <span class="badge" id="notif-badge">0</span>
+      </a>
+      <a href="#contact" class="nav-link" data-section="contact">Kontakt</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">
+      <div class="logo-mark-sm">MV</div>
+      <span>Shipping</span>
+    </div>
+    <button class="drawer-close" id="drawer-close">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#home" class="drawer-link" data-section="home">
+      <span class="drawer-icon">🏠</span> Akèy
+    </a>
+    <a href="#notifications" class="drawer-link" data-section="notifications">
+      <span class="drawer-icon">🔔</span> Notifikasyon
+      <span class="badge ml-auto" id="notif-badge-drawer">0</span>
+    </a>
+    <a href="#contact" class="drawer-link" data-section="contact">
+      <span class="drawer-icon">📞</span> Kontakt
+    </a>
+  </nav>
+  <div class="drawer-footer">
+    <p>MV Shipping © 2024</p>
+    <p>Miami → Ayiti</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content">
+
+  <!-- HOME SECTION -->
+  <section id="home" class="section active">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg">
+        <div class="hero-wave"></div>
+        <div class="hero-dots"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">✈️ Miami → 🇭🇹 Ayiti</div>
+        <h1 class="hero-title">
+          Voye Kolis ou<br/>
+          <span class="accent">San Pwoblèm</span>
+        </h1>
+        <p class="hero-subtitle">Livrezon rapid, serye e abòdab depi Nò Miami dirèk pou Miragwàn ak Pòtoprens.</p>
+        <div class="hero-price-badge">
+          <span class="price-num">$4.99</span>
+          <span class="price-unit">/ liv (lb)</span>
+        </div>
+        <div class="hero-cta">
+          <a href="mailto:mvshipping43@gmail.com" class="btn-primary">Kòmanse Voye</a>
+          <a href="#contact" class="btn-outline" data-scroll="contact">Kontakte Nou</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ship-card">
+          <div class="ship-icon">🚢</div>
+          <div class="ship-label">Maritim & Aeryen</div>
+        </div>
+        <div class="float-tag tag-1">15-20 jou</div>
+        <div class="float-tag tag-2">24h/24 Sipò</div>
+        <div class="float-tag tag-3">Sekirize ✓</div>
+      </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="stat">
+        <span class="stat-num">$4.99</span>
+        <span class="stat-label">Pa Liv</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">15-20</span>
+        <span class="stat-label">Jou Tranzit</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">24/7</span>
+        <span class="stat-label">Sèvis Kliyan</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Garanti</span>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="section-block">
+      <h2 class="section-title">Kijan Sa Mache?</h2>
+      <p class="section-sub">Senp, rapid e transparan</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📞</div>
+          <h3>Kontakte Nou</h3>
+          <p>Ekri nou par imel pou voye koli w.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">📦</div>
+          <h3>Voye Koli w</h3>
+          <p>Osito li rive jwenn adres nou, wap resevwa prèv lan par imel.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">🚢</div>
+          <h3>Nou Voye pou Ou</h3>
+          <p>Koli a kite Miami pa bato oswa avyon epi li rive Ayiti nan 15-20 jou selon mwayen transpò w chwazi an.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-icon">🏠</div>
+          <h3>Ou Resevwa</h3>
+          <p>Pran koli ou Miragwàn oswa Pòtoprens san pwoblèm, oubyen resevwa yon nan lòt vil tankou aux Cayes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section-block alt-bg">
+      <h2 class="section-title">Poukisa MV Shipping?</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div class="feature-text">
+            <h4>Pri Konpetitif</h4>
+            <p>Sèlman $4.99/lb. Kalkile depans ou fasil san sipriz.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <div class="feature-text">
+            <h4>Sekirite Garanti</h4>
+            <p>Machandiz ou pwoteje depi Miami jiska pòt ou.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <div class="feature-text">
+            <h4>Chak Mwa</h4>
+            <p>Nou gen okazyon voye chak mwa. Pa janm rate yon ekspedisyon.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📬</div>
+          <div class="feature-text">
+            <h4>Sipò 24h/24</h4>
+            <p>Ekri nou nenpòt lè pa imèl. Nou toujou disponib pou ou.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✈️</div>
+          <div class="feature-text">
+            <h4>Bato & Avyon</h4>
+            <p>Nou itilize de mòd transpò pou asire machandiz ou rive vit.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📍</div>
+          <div class="feature-text">
+            <h4>Plizyè Destinasyon</h4>
+            <p>Miragwàn, Pòtoprens, ak zòn ki bò kote yo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTIFICATIONS SECTION -->
+  <section id="notifications" class="section">
+    <div class="page-header">
+      <h2>Notifikasyon</h2>
+      <p>Mizajou sou kolis ak sèvis yo</p>
+    </div>
+    <div class="empty-state">
+      <div class="empty-icon">🔔</div>
+      <h3>Pa Gen Notifikasyon</h3>
+      <p>Ou pa gen okenn notifikasyon pou kounye a. Retounen pita oswa anrejistre pou resevwa mizajou.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="section">
+    <div class="page-header">
+      <h2>Kontakte Nou</h2>
+      <p>Nou la pou ou 24h/24, 7j/7</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-info">
+          <span class="contact-label">Etazini (Miami)</span>
+          <a href="tel:+13527025150" class="contact-value">+1 352-702-5150</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <div class="contact-info">
+          <span class="contact-label">Ayiti (Miragwàn)</span>
+          <a href="tel:+50935608872" class="contact-value">+509 3560-8872</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div class="contact-info">
+          <span class="contact-label">Imèl</span>
+          <a href="mailto:mvshipping43@gmail.com" class="contact-value">mvshipping43@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div class="contact-info">
+          <span class="contact-label">Baz Prinsipal</span>
+          <span class="contact-value">Miragwàn, Ayiti</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-info">
+          <span class="contact-label">Sit Wèb</span>
+          <a href="https://www.mvshipping.com" target="_blank" class="contact-value">www.mvshipping.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form-block">
+      <h3>Voye Yon Mesaj</h3>
+      <form id="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="c-name">Non Ou</label>
+            <input type="text" id="c-name" name="name" placeholder="Non Konplè" required />
+          </div>
+          <div class="form-group">
+            <label for="c-email">Imèl Ou</label>
+            <input type="email" id="c-email" name="email" placeholder="email@exemple.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="c-subject">Sijè</label>
+          <input type="text" id="c-subject" name="subject" placeholder="Sijè mesaj ou" required />
+        </div>
+        <div class="form-group">
+          <label for="c-message">Mesaj</label>
+          <textarea id="c-message" name="message" rows="4" placeholder="Ekri mesaj ou isit..." required></textarea>
+        </div>
+        <input type="hidden" name="access_key" value="a2d5b024-731b-4a8c-a5d4-d46a64e4f60a" />
+        <button type="submit" class="btn-primary full-width" id="contact-submit">
+          <span class="btn-text">Voye Mesaj</span>
+          <span class="btn-loader hidden">⏳ Ap voye...</span>
+        </button>
+        <p id="contact-success" class="form-success hidden">✅ Mesaj ou te voye! Nou ap kontakte ou byento.</p>
+        <p id="contact-error" class="form-error hidden"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- FLOATING CONTACT BUTTON -->
+<a href="mailto:mvshipping43@gmail.com" class="fab-contact" title="Kontakte Nou">
+  <span class="fab-icon">✉️</span>
+</a>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav">
+  <a href="#home" class="bottom-nav-item active" data-section="home">
+    <span class="bnav-icon">🏠</span>
+    <span class="bnav-label">Akèy</span>
+  </a>
+  <a href="#notifications" class="bottom-nav-item" data-section="notifications">
+    <span class="bnav-icon">🔔</span>
+    <span class="bnav-label">Notifikasyon</span>
+    <span class="bnav-badge" id="bnav-badge">0</span>
+  </a>
+  <a href="#contact" class="bottom-nav-item" data-section="contact">
+    <span class="bnav-icon">📞</span>
+    <span class="bnav-label">Kontakt</span>
+  </a>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
